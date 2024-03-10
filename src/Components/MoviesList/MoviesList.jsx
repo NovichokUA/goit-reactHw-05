@@ -4,13 +4,14 @@ function MovieList({ movies }) {
   return (
     <div>
       <ul>
-        {movies.map((movie) => {
-          return (
-            <li key={movie.id}>
-              <MovieCard movie={movie} />
-            </li>
-          );
-        })}
+        {movies &&
+          movies.map((movie) => {
+            return (
+              <li key={movie.id}>
+                <MovieCard movie={movie} />
+              </li>
+            );
+          })}
       </ul>
     </div>
   );

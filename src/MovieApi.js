@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// const url = "https://api.themoviedb.org/3/trending/movie/day?language=en-US";
 axios.defaults.baseURL = "https://api.themoviedb.org/3";
 
 const options = {
@@ -33,5 +32,23 @@ export const GetMovieCastById = async (id) => {
 
 export const GetReviewsById = async (id) => {
   const response = await axios.get(`/movie/${id}/reviews`, options);
+  return response;
+};
+
+export const searchMovie = async (value, page) => {
+  const response = await axios.get(
+    `https://api.themoviedb.org/3/search/movie`,
+    {
+      params: {
+        query: value,
+        page,
+      },
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMDkwMTYyZTU2ZjkyYWM0NjZmMzRlN2JkMjNlODRjZSIsInN1YiI6IjY1ZWIzNTU5NzJjMTNlMDE4NWM3ZDc1MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5YfPNqMwLTEY2wmX-iUO4t19KkSUeBrW0YaGogaaTyQ",
+        accept: "application/json",
+      },
+    }
+  );
   return response;
 };
