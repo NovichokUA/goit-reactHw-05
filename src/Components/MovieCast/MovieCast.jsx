@@ -7,6 +7,7 @@ import css from "./MovieCast.module.css";
 const MovieCast = () => {
   const { movieId } = useParams();
   const imageUrl = "https://image.tmdb.org/t/p/w500/";
+
   const [casts, setCasts] = useState(null);
 
   useEffect(() => {
@@ -23,10 +24,9 @@ const MovieCast = () => {
 
   return (
     <div>
-      <h1>Cast!</h1>
       {casts && (
         <div>
-          <ul>
+          <ul className={css.castContainer}>
             {casts.map((cast) => {
               return (
                 <li key={cast.cast_id}>
@@ -36,8 +36,8 @@ const MovieCast = () => {
                       className={css.img}
                     />
                   )}
-                  <p>{cast.profile_path && cast.name}</p>
-                  {cast.profile_path && <p>Character: {cast.character}</p>}
+                  <p className={css.title}>{cast.name}</p>
+                  <p className={css.title}>Character: {cast.character}</p>
                 </li>
               );
             })}

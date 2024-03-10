@@ -23,6 +23,7 @@ function MoviesPage() {
     const form = e.target;
     const searchValue = form.elements.choice.value;
     console.log(searchValue);
+
     if (form.elements.choice.value.trim() === "") {
       return toast.error("Please enter a search word.", { duration: 1500 });
     }
@@ -41,7 +42,7 @@ function MoviesPage() {
         setIsLoading(true);
         setError(false);
         const data = await searchMovie(value, page);
-        console.log(data);
+
         setChoiceMovie((prevData) => [...prevData, ...data.data.results]);
         setTotalPage(data.data.total_pages);
         setIsLoading(false);
