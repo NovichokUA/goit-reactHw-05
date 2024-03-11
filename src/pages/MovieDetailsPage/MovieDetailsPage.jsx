@@ -26,7 +26,7 @@ function MovieDetailsPage() {
   return (
     <div className={css.mainContainer}>
       <button className={css.btn}>
-        <Link to="/">Go back</Link>
+        <Link to="/movies">Go back</Link>
       </button>
       {movie && (
         <div className={css.container}>
@@ -41,18 +41,16 @@ function MovieDetailsPage() {
             </p>
             <h3>Overview</h3>
             <p className={css.p}>{movie.overview}</p>
-            <p className={css.p}>
-              Genres:
-              <ul className={css.ganresContaner}>
-                {movie.genres.map((genre) => {
-                  return (
-                    <li key={genre.id}>
-                      <p>{genre.name}</p>
-                    </li>
-                  );
-                })}
-              </ul>
-            </p>
+            <p className={css.p}>Genres:</p>
+            <ul className={css.ganresContaner}>
+              {movie.genres.map((genre) => {
+                return (
+                  <li key={genre.id}>
+                    <p>{genre.name}</p>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </div>
       )}

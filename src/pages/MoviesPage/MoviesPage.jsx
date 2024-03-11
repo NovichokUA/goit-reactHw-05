@@ -9,26 +9,32 @@ import LoadMoreBtn from "../../Components/LoadMoreBtn/LoadMoreBtn.jsx";
 import css from "./MoviesPage.module.css";
 
 import { FiSearch } from "react-icons/fi";
+import { useSearchParams } from "react-router-dom";
 
 function MoviesPage() {
-  const [value, setValue] = useState("");
+  // const [value, setValue] = useState("");
   const [choiceMovie, setChoiceMovie] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
 
+  const [params, setParams] = useSearchParams();
+  const value = params.get("query") ?? "";
+
   const getValue = (e) => {
     e.preventDefault();
     const form = e.target;
-    const searchValue = form.elements.choice.value;
-    console.log(searchValue);
 
-    if (form.elements.choice.value.trim() === "") {
+    const valueInput = form.elements.query.value;
+    params.set("query", valueInput);
+    setParams(params);
+
+    if (valueInput.trim() === "") {
+      params.set("query", "");
       return toast.error("Please enter a search word.", { duration: 1500 });
     }
 
-    setValue(searchValue);
     setPage(1);
     setChoiceMovie([]);
     setTotalPage(0);
@@ -68,7 +74,7 @@ function MoviesPage() {
       <form onSubmit={getValue} className={css.form}>
         <input
           type="text"
-          name="choice"
+          name="query"
           placeholder="Search movie"
           autoComplete="off"
           autoFocus
