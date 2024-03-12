@@ -1,5 +1,4 @@
-import { useState, useEffect, useRef } from "react";
-import { DetailsMovieById } from "../../MovieApi";
+import { useState, useEffect, useRef, Suspense } from "react";
 import {
   Link,
   NavLink,
@@ -9,10 +8,16 @@ import {
 } from "react-router-dom";
 import clsx from "clsx";
 
+import { DetailsMovieById } from "../../MovieApi";
 import css from "./MovieDetailsPage.module.css";
+import { Toaster } from "react-hot-toast";
+import { Spiner } from "../../Components/Spiner/Spiner";
 
 function MovieDetailsPage() {
   const imageUrl = "https://image.tmdb.org/t/p/w500/";
+  const defaultImg =
+    "https://amiel.club/uploads/posts/2022-03/1647643805_7-amiel-club-p-gomer-kartinki-7.jpg";
+
   const { movieId } = useParams();
 
   const location = useLocation();
@@ -40,7 +45,14 @@ function MovieDetailsPage() {
       </button>
       {movie && (
         <div className={css.container}>
-          {<img src={imageUrl + movie.poster_path} className={css.img} />}
+          {
+            <img
+              src={
+                movie.poster_path ? imageUrl + movie.poster_path : defaultImg
+              }
+              className={css.img}
+            />
+          }
           <div className={css.titleContainer}>
             <h1>
               {movie.title} ({movie.release_date.slice(0, 4)})
@@ -87,7 +99,10 @@ function MovieDetailsPage() {
           </NavLink>
         </li>
       </ul>
-      <Outlet />
+      <Suspense fallback={<Spiner />}>
+        <Outlet />
+      </Suspense>
+      <Toaster />
     </div>
   );
 }

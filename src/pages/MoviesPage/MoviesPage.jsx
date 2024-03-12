@@ -12,7 +12,6 @@ import { FiSearch } from "react-icons/fi";
 import { useSearchParams } from "react-router-dom";
 
 function MoviesPage() {
-  // const [value, setValue] = useState("");
   const [choiceMovie, setChoiceMovie] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);

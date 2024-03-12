@@ -20,7 +20,7 @@ function HomePages() {
         setError(false);
         const response = await GetMoviesPopular(page);
         console.log(response);
-        setMovies(response.results);
+        setMovies((prevMovies) => [...prevMovies, ...response.results]);
         setTotalPage(response.total_pages);
       } catch (error) {
         setError(error);
