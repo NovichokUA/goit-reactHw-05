@@ -18,8 +18,8 @@ function MoviesPage() {
   const [error, setError] = useState(false);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
-
   const [params, setParams] = useSearchParams();
+
   const value = params.get("query") ?? "";
 
   const getValue = (e) => {
@@ -87,9 +87,10 @@ function MoviesPage() {
 
       <MovieList movies={choiceMovie} />
 
-      {choiceMovie.length > 0 && !isLoading && totalPage !== page && (
-        <LoadMoreBtn onClick={handalLoadMore} />
-      )}
+      {choiceMovie &&
+        choiceMovie.length > 0 &&
+        !isLoading &&
+        totalPage !== page && <LoadMoreBtn onClick={handalLoadMore} />}
 
       <Toaster
         containerStyle={containerStyle}

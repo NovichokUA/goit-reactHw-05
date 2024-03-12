@@ -1,6 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { DetailsMovieById } from "../../MovieApi";
-import { Link, NavLink, Outlet, useParams } from "react-router-dom";
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 import clsx from "clsx";
 
 import css from "./MovieDetailsPage.module.css";
@@ -8,6 +14,10 @@ import css from "./MovieDetailsPage.module.css";
 function MovieDetailsPage() {
   const imageUrl = "https://image.tmdb.org/t/p/w500/";
   const { movieId } = useParams();
+
+  const location = useLocation();
+  console.log(location.state);
+  const backLinkRef = useRef(location.state ?? "/movies");
 
   const [movie, setMovie] = useState(null);
 
@@ -26,7 +36,7 @@ function MovieDetailsPage() {
   return (
     <div className={css.mainContainer}>
       <button className={css.btn}>
-        <Link to="/movies">Go back</Link>
+        <Link to={backLinkRef.current}>Go back</Link>
       </button>
       {movie && (
         <div className={css.container}>
