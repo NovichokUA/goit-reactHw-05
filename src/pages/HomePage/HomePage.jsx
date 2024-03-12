@@ -1,10 +1,10 @@
+import { useEffect, useState } from "react";
+
 import MovieList from "../../Components/MoviesList/MoviesList";
 import { GetMoviesPopular } from "../../MovieApi";
 import LoadMoreBtn from "../../Components/LoadMoreBtn/LoadMoreBtn.jsx";
 import ErrorMessage from "../../Components/ErrorMessage/ErrorMessage.jsx";
 import { Spiner } from "../../Components/Spiner/Spiner.jsx";
-
-import { useEffect, useState } from "react";
 
 function HomePages() {
   const [movies, setMovies] = useState([]);
@@ -19,7 +19,6 @@ function HomePages() {
         setIsLoading(true);
         setError(false);
         const response = await GetMoviesPopular(page);
-        console.log(response);
         setMovies((prevMovies) => [...prevMovies, ...response.results]);
         setTotalPage(response.total_pages);
       } catch (error) {

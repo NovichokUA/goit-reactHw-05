@@ -1,20 +1,29 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { GetReviewsById } from "../../MovieApi";
+import { Spiner } from "../Spiner/Spiner";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 import css from "./MovieReviews.module.css";
 
 function MovieReviews() {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState(null);
+  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     async function GetRewiews() {
       try {
+        setIsLoading(true);
+        setError(false);
         const data = await GetReviewsById(movieId);
-
         setReviews(data.data.results);
+        setIsLoading(false);
       } catch (error) {
-        console.log(error);
+        setError(error);
+      } finally {
+        setIsLoading(false);
       }
     }
     GetRewiews();
@@ -39,6 +48,8 @@ function MovieReviews() {
           })}
         </ul>
       )}
+      {isLoading && <Spiner />}
+      {error && <ErrorMessage error={error} />}
     </div>
   );
 }

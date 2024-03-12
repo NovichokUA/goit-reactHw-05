@@ -12,27 +12,33 @@ import { DetailsMovieById } from "../../MovieApi";
 import css from "./MovieDetailsPage.module.css";
 import { Toaster } from "react-hot-toast";
 import { Spiner } from "../../Components/Spiner/Spiner";
+import ErrorMessage from "../../Components/ErrorMessage/ErrorMessage";
 
 function MovieDetailsPage() {
+  const [movie, setMovie] = useState(null);
+  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { movieId } = useParams();
+
+  const location = useLocation();
+  const backLinkRef = useRef(location.state ?? "/movies");
+
   const imageUrl = "https://image.tmdb.org/t/p/w500/";
   const defaultImg =
     "https://amiel.club/uploads/posts/2022-03/1647643805_7-amiel-club-p-gomer-kartinki-7.jpg";
 
-  const { movieId } = useParams();
-
-  const location = useLocation();
-  console.log(location.state);
-  const backLinkRef = useRef(location.state ?? "/movies");
-
-  const [movie, setMovie] = useState(null);
-
   useEffect(() => {
     async function GetMovieById() {
       try {
+        setIsLoading(true);
+        setError(false);
         const response = await DetailsMovieById(movieId);
         setMovie(response.data);
+        setIsLoading(false);
       } catch (error) {
-        console.log(error);
+        setError(error);
+      } finally {
+        setIsLoading(false);
       }
     }
     GetMovieById();
@@ -99,10 +105,13 @@ function MovieDetailsPage() {
           </NavLink>
         </li>
       </ul>
+
       <Suspense fallback={<Spiner />}>
         <Outlet />
       </Suspense>
-      <Toaster />
+
+      {error && <ErrorMessage error={error} />}
+      {isLoading && <Spiner />}
     </div>
   );
 }

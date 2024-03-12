@@ -3,12 +3,6 @@ import { Suspense, lazy } from "react";
 
 import { Toaster } from "react-hot-toast";
 import { Spiner } from "./Components/Spiner/Spiner";
-// import HomePages from "./pages/HomePage/HomePage";
-// import MoviesPage from "./pages/MoviesPage/MoviesPage";
-// import Navigation from "./Components/Navigation/Navigation";
-// import MovieDetailsPage from "./pages/MovieDetailsPage/MovieDetailsPage";
-// import MovieCast from "./Components/MovieCast/MovieCast";
-// import MovieReviews from "./Components/MovieReviews/MovieReviews";
 
 import "./App.css";
 

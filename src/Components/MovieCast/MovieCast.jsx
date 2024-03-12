@@ -1,24 +1,32 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { GetMovieCastById } from "../../MovieApi";
 
+import { GetMovieCastById } from "../../MovieApi";
 import css from "./MovieCast.module.css";
+import { Spiner } from "../Spiner/Spiner";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 const MovieCast = () => {
+  const [isloading, setIsloading] = useState(false);
+  const [error, setError] = useState(false);
   const { movieId } = useParams();
+  const [casts, setCasts] = useState(null);
+
   const imageUrl = "https://image.tmdb.org/t/p/w500/";
   const defaultImg =
     "https://amiel.club/uploads/posts/2022-03/1647643768_3-amiel-club-p-gomer-kartinki-3.jpg";
 
-  const [casts, setCasts] = useState(null);
-
   useEffect(() => {
     async function getMovieCast() {
       try {
+        setIsloading(true);
+        setError(false);
         const data = await GetMovieCastById(movieId);
         setCasts(data.data.cast);
       } catch (error) {
-        console.log(error);
+        setError(error);
+      } finally {
+        setIsloading(false);
       }
     }
     getMovieCast();
@@ -50,6 +58,8 @@ const MovieCast = () => {
           </ul>
         </div>
       )}
+      {isloading && <Spiner />}
+      {error && <ErrorMessage error={error} />}
     </div>
   );
 };
