@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { Suspense, lazy } from "react";
 
 import { Toaster } from "react-hot-toast";
-import { Spiner } from "./components/Spiner/Spiner";
+import { Spiner } from "./components/Spiner/Spiner.jsx";
 
 import "./App.css";
 
