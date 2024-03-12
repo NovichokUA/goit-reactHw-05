@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { searchMovie } from "../../MovieApi";
-import MovieList from "../../Components/MoviesList/MoviesList";
+import MovieList from "../../components/MoviesList/MoviesList";
 import toast, { Toaster } from "react-hot-toast";
-import { Spiner } from "../../Components/Spiner/Spiner.jsx";
-import ErrorMessage from "../../Components/ErrorMessage/ErrorMessage.jsx";
-import LoadMoreBtn from "../../Components/LoadMoreBtn/LoadMoreBtn.jsx";
+import { Spiner } from "../../components/Spiner/Spiner.jsx";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage.jsx";
+import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn.jsx";
 
 import css from "./MoviesPage.module.css";
 

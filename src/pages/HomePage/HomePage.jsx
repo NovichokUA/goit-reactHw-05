@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-import MovieList from "../../Components/MoviesList/MoviesList";
+import MovieList from "../../components/MoviesList/MoviesList";
 import { GetMoviesPopular } from "../../MovieApi";
-import LoadMoreBtn from "../../Components/LoadMoreBtn/LoadMoreBtn.jsx";
-import ErrorMessage from "../../Components/ErrorMessage/ErrorMessage.jsx";
-import { Spiner } from "../../Components/Spiner/Spiner.jsx";
+import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn.jsx";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage.jsx";
+import { Spiner } from "../../components/Spiner/Spiner.jsx";
 
 function HomePages() {
   const [movies, setMovies] = useState([]);

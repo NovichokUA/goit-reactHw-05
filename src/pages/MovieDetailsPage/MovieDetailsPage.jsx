@@ -10,9 +10,8 @@ import clsx from "clsx";
 
 import { DetailsMovieById } from "../../MovieApi";
 import css from "./MovieDetailsPage.module.css";
-import { Toaster } from "react-hot-toast";
-import { Spiner } from "../../Components/Spiner/Spiner";
-import ErrorMessage from "../../Components/ErrorMessage/ErrorMessage";
+import { Spiner } from "../../components/Spiner/Spiner";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);

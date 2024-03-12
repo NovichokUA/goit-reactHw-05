@@ -2,19 +2,19 @@ import { Route, Routes } from "react-router-dom";
 import { Suspense, lazy } from "react";
 
 import { Toaster } from "react-hot-toast";
-import { Spiner } from "./Components/Spiner/Spiner";
+import { Spiner } from "./components/Spiner/Spiner";
 
 import "./App.css";
 
 const HomePages = lazy(() => import(`./pages/HomePage/HomePage`));
 const MoviesPage = lazy(() => import("./pages/MoviesPage/MoviesPage"));
-const Navigation = lazy(() => import("./Components/Navigation/Navigation"));
+const Navigation = lazy(() => import("./components/Navigation/Navigation"));
 const MovieDetailsPage = lazy(() =>
   import("./pages/MovieDetailsPage/MovieDetailsPage")
 );
-const MovieCast = lazy(() => import("./Components/MovieCast/MovieCast"));
+const MovieCast = lazy(() => import("./components/MovieCast/MovieCast"));
 const MovieReviews = lazy(() =>
-  import("./Components/MovieReviews/MovieReviews")
+  import("./components/MovieReviews/MovieReviews")
 );
 
 function App() {
