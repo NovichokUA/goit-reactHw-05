@@ -10,7 +10,7 @@ import css from "./MoviesPage.module.css";
 
 import { FiSearch } from "react-icons/fi";
 import { useSearchParams } from "react-router-dom";
-
+// change
 function MoviesPage() {
   const [choiceMovie, setChoiceMovie] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
